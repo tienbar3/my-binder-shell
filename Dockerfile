@@ -2,23 +2,15 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && apt install -y \
+RUN apt update && apt install -y --no-install-recommends \
     bash \
     curl \
     wget \
     git \
-    nano \
-    vim \
-    htop \
-    net-tools \
+    ca-certificates \
     iputils-ping \
-    openssh-client \
-    python3 \
-    python3-pip \
-    nodejs \
-    npm \
-    && apt clean
+    net-tools \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
-
 CMD ["/bin/bash"]
